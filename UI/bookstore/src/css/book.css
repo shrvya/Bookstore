@@ -1,0 +1,73 @@
+.box{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap
+}
+.material-icons{
+    font-size: 2.4em;
+    cursor: pointer;
+}
+.card{
+    width: 300px;
+}
+.card .card-image .card-title{
+    color: black;
+    font-weight: 400
+}
+.cart{
+    margin-top:40px;
+}
+.collection .collection-item{
+    display: flex;
+}
+.collection-item.avatar .title {
+    font-size: 20px;
+    font-weight: 500;
+    color: #ee6e73;
+    display: block;
+    margin-bottom: 20px;
+    
+}
+.collection .collection-item img{
+    width: 150px;
+    margin-right: 25px;
+}
+.item-desc{
+    align-self:center;
+}
+.pagination-box{
+    position: absolute;
+    top: 1183px;
+  left: 450px;
+  width: 527px;
+  height: 37px;
+  opacity: 1;
+  }
+  .pagination {
+    display: inline-block;
+  }
+  .page-item{
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+  }
+  .page-link{
+    background-color: #4CAF50;
+    color: white;
+  }
+  @media only screen and (max-width: 500px) {
+    .pagination-box{
+        top: 83px;
+        left: 15px;
+    }
+}
+@media only screen and (max-width: 900px) {
+    .pagination-box{
+         top: 2283px; 
+       
+       bottom: 20% !important;
+        /* left: 215px; */
+        left: 35%;
+    }
+}

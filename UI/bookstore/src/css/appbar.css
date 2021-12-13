@@ -1,0 +1,72 @@
+.navbar{
+    padding-top: 0px;
+padding-left: 0px;
+width: 1366px;
+height: 60px;
+background: #A03037 0% 0% no-repeat padding-box;
+opacity: 1;
+}
+.container{
+    width: 1366px;
+    height: 1322px;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    border: 1px solid #E2E2E2;
+    opacity: 1;
+    margin-top:35px;
+}
+.bookstore{
+    /* margin-top: 17px !important; */
+    padding-top: 37px;
+   /* margin-bottom: 1275px ; */
+   /* padding-bottom: 10px; */
+margin-left: 201px;
+margin-bottom: 25px !important; 
+width: 191px;
+height: 36px; 
+text-align: left;
+font: normal normal normal 20px/26px Roboto;
+letter-spacing: 0px;
+color: #FFFFFF;
+text-transform: capitalize;
+opacity: 1;
+
+background-color: indigo;
+}
+.searchInputs {
+	/* margin-top: 5px; */
+    margin-left: 334px;
+    margin-bottom: 1275px;
+width: 200px;
+height: 26px;
+background: #FCFCFC 0% 0% no-repeat padding-box;
+border-radius: 3px;
+opacity: 1;
+
+}
+
+.search  {
+    padding-top: 14px;
+    padding-left: 334px;
+width: 190px;
+height: 33px;
+background: #FCFCFC 0% 0% no-repeat padding-box;
+border-radius: 3px;
+opacity: 1;
+}
+
+.searchIcon {
+	padding-top: 24px;
+padding-left: 348px;
+width: 13px;
+height: 13px;
+background: #9D9D9D 0% 0% no-repeat padding-box;
+opacity: 1;
+}
+.cart-icon{
+    display: flex;
+    flex-direction: row;
+    margin-right: 350px !important;
+    
+    width:250px;
+    height:30px ;
+}
