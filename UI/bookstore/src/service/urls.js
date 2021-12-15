@@ -12,3 +12,4 @@ export const resetusers=(token,data)=>{
     axiosfunction('post',`http://localhost:4000/users/reset/${token}`,data)
 }
 
+

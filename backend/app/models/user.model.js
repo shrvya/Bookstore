@@ -118,11 +118,24 @@
   * @param {*} callback 
   * @returns 
   */
- const loginUser = (body, callback) => {
-   return User.findOne({ email: body.email }, (err, data) => {
-     return err ? callback(err, null) : callback(null, data);
-   });
- };
+  // const loginUser = (body, callback) => {
+  //   return User.findOne({ email: body.email }, (err, data) => {
+  //     console.log(data);
+  //     return err ? callback(err, null) : callback(null, data);
+  //   });
+  // };
+  loginUser = (userDetails) => {
+    return User.findOne({email: userDetails.email}).then((data) => {
+        if (data) {
+            return data;
+        } else {
+            throw new Error("email not found");
+        }
+    }).catch((error) => {
+        throw error;
+    })
+
+};
  
  /**
   * @description querry to register a new user

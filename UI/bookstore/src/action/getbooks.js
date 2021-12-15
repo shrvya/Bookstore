@@ -18,4 +18,21 @@ export const setCurrentPage=(payload)=>{
     payload
     
   }}
-
+  export const addtoCart=(books)=>{
+    return{
+    type: "ADD_CART",
+    payload:books,
+    
+  }}
+  export const getcart=(payload)=>{
+    return{
+    type: "GET_CART",
+    payload
+    
+  }}
+  export const updatecart=(payload)=>{
+    return{
+    type: "UPDATE_CART",
+    payload
+    
+  }}

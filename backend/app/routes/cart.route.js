@@ -1,8 +1,20 @@
-const {Router} = require('express');
-const cartController = require('../controller/cart/cart.controller');
-const routerCart = Router();
-const validation = require('../middleware/cart.middleware.js');
-routerCart.get('/:id',  cartController.get_cart_items);
-routerCart.post('/:id',  cartController.add_cart_item);
-routerCart.delete('/:id/:itemId', cartController.delete_item);
-module.exports = routerCart;
+
+const express = require('express')
+    const cart = require("../controller/cart/cart.controller");
+    const {
+     tokenVerification
+    } = require("../middleware/cart.middleware.js");
+    const router = express.Router()
+    const cors = require('cors');
+
+ const corsOptions = {
+   origin: 'http://localhost:3000',
+   credentials: true,            
+   optionSuccessStatus: 200
+ }
+    router.get("/",tokenVerification, cart.findAll);  
+    router.post("/",cors(corsOptions),tokenVerification, cart.create);
+    router.put("/:cartId",tokenVerification, cart.update);
+    router.delete("/:cartId",tokenVerification, cart.delete);
+    module.exports = router
+  

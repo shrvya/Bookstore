@@ -1,37 +1,99 @@
-const {getCart, addToCart, deleteProduct} = require('../../service/cart.service.js')
-module.exports.get_cart_items = async (req, res) => {
-    const userId=req.params.id;
-    try {
-        const data = await getCart(userId);
-        return res.send(data)
-    } catch (err) {
-        console.log(err);
-        res.status(500).send("Something went wrong");
-    }
-}
-module.exports.add_cart_item = async (req, res) => {
-    const userId=req.params.id;
-    const productId = req.body.productId;
-    const quantity = req.body.quantity;
-    try {
-        const data = await addToCart(userId, productId, quantity)
-        return res.status(201).send(data);
 
-    } catch (err) {
-        console.log(err);
-        res.status(500).send("Something went wrong");
-    }
-}
+const {
+    createNewCart,
+    findAllCart,
+    updateCart,
+    deleteCartById,
+  } = require("../../service/cart.service");
+  const logger = require("../../../utils/logger");
+  
+  exports.create = (req, res) => {
+    createNewCart(
+      req.body.userId,
+      req.body.bookId,
+      req.body.price,
+      req.body.title,
+      req.body.image,
+      req.body.author,
+      (err, cartData) => {
+        if (err) {
+          res.status(500).send({
+            message:
+              err.message || "Some error occurred while creating the Cart.",
+          });
+          logger.error("Some error occurred while creating the Cart.");
+        }
+        res.send(cartData);
+        logger.info("Successfully created the Cart");
+      }
+    );
+  };
+ 
+  exports.findAll = (req, res) => {
+    findAllCart((err, cart) => {
+      if (err) {
+        res.status(500).send({
+          message: err.message || "Some error occurred while retrieving cart.",
+        });
+        logger.error("Some error occurred while retrieving cart.");
+      }
+      res.send(cart);
+      logger.info("Successfully returned all the cart.");
+    });
+  };
+  
+ 
+  exports.update = (req, res) => {
+    let id = req.params.cartId;
+    let numOfItems = req.body.numOfItems;
+    console.log( numOfItems);
+    updateCart(id, numOfItems, (err, cart) => {
+      
+      if (err) {
+        if (err.kind === "ObjectId") {
+          logger.error("Cart not found ");
+          return res.status(404).send({
+            message: "Cart not found with id " + req.params.cartId,
+          });
+        }
+        logger.error("Error retrieving Cart");
+        return res.status(500).send({
+          message: "Error updating Cart with id " + req.params.cartId,
+        });
+      }
+      if (!cart) {
+        logger.error("cart not found");
+        return res.status(404).send({
+          message: "cart not found with id " + req.params.cartId,
+        });
+      }
+      res.send(cart);
+      logger.info("Successfully updated the cart");
+    });
+  };
 
-module.exports.delete_item = async (req, res) => {
-
-    const productId = req.params.itemId;
-    try {
-        let cart =await deleteProduct(req.body.userId, productId)
-        return res.status(201).send(cart);
-
-    } catch (err) {
-        console.log(err);
-        res.status(500).send("Something went wrong");
-    }
-}
+  exports.delete = (req, res) => {
+    deleteCartById(req.params.cartId, (err, cart) => {
+      if (err) {
+        if (err.kind === "ObjectId" || err.name === "NotFound") {
+          logger.error("Cart not found");
+          return res.status(404).send({
+            message: "Cart not found with id " + req.params.cartId,
+          });
+        }
+        logger.error("Error retrieving cart");
+        return res.status(500).send({
+          message: "Could not delete cart with id " + req.params.cartId,
+        });
+      }
+      if (!cart) {
+        logger.error("cart not found");
+        return res.status(404).send({
+          message: "cart not found with id " + req.params.cartId,
+        });
+      }
+      res.send({ message: "Cart deleted successfully!" });
+      logger.info("Successfully deleted the cart");
+    });
+  };
+  

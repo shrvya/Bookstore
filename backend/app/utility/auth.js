@@ -1,19 +1,22 @@
 require('dotenv').config();
 const jwt = require("jsonwebtoken");
 const crypto = require('crypto');
-exports.generateToken = (_id) => {
+exports.generateToken = (data) => {
   return jwt.sign(
     {
-      _id: _id,
+      // _id: _id,
+      email:data.email, 
+   userId: data._id,
     },
    process.env.mySecretKey,
     { expiresIn: "1h" }
   );
 };
 
+
 exports.verifyToken = (token,callback) => {
    return jwt.verify(token,  process.env.mySecretKey,(err,data)=>{
-     console.log(data);
+  
     return err ? callback(err, null) : callback(null, data);
    });
 };

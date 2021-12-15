@@ -15,15 +15,15 @@ import FormControl from '@mui/material/FormControl';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { Link } from 'react-router-dom';
-// import { useHistory } from 'react-router-dom'
-
+import { useHistory } from 'react-router-dom'
+import Dashboard from "../pages/Dashboard";
 
 export const Login = () => {
   const [values, setValues] = React.useState({
     password: '',
     showPassword: false,
   });
-  // let history = useHistory();
+   let history = useHistory();
   const [username, setusername] = useState("");
   const [password, setPassword] = useState("");
   const [userError, setuserError] = useState(false);
@@ -56,7 +56,7 @@ export const Login = () => {
 
     loginusers(data);
     alert("Succefully Login");
-    // history.push('/Fundokeep');
+     history.push('/Dashboard');
    
     
   };

@@ -12,6 +12,9 @@ import {useState,useEffect} from 'react';
 import { useDispatch} from "react-redux";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import ImportContactsIcon from "@mui/icons-material/ImportContacts";
+import { Link } from 'react-router-dom'
+import Dashboard from '../pages/Dashboard'
+import CartPage from '../pages/CartPage'
 import { useSelector } from "react-redux";
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -90,6 +93,7 @@ useEffect(() => {
             aria-label="open drawer"
             sx={{ mr: 2 }}
             style={{ marginLeft: "7%" }}
+            component={Link} to="/Dashboard"
           >
             <ImportContactsIcon />
           </IconButton>
@@ -126,6 +130,7 @@ useEffect(() => {
               size="large"
               
               style={{ color: "white",marginRight:"1em"}}
+              component={Link} to="/CartPage"
             >
               <ShoppingCartIcon style={{ color: "white", marginRight: "2%" }} />
             </IconButton>

@@ -19,25 +19,43 @@
   * @param {object} req 
   * @param {object} res 
   */
- exports.loginUser = (req, res) => {
-     let body = req.body;
-     loginNewUser(body, (err, data) => {
-         if (err) {
-             logger.error(err);
-             responseObject = dto.userApiFailure;
-             responseObject.message = err;
+//   exports.loginUser = (req, res) => {
+//     let body = req.body;
+//     loginNewUser(body, (err, data) => {
+//         if (err) {
+//             console.log(data);
+//             logger.error(err);
+//             responseObject = dto.userApiFailure;
+//             responseObject.message = err;
+          
+//             return res.send(responseObject);
            
-             return res.send(responseObject);
-            
- 
-         }
-         logger.info("login Successful");
-         responseObject = dto.userApiSuccess;
-         responseObject.message = data;
-         console.log("login"+responseObject);
-         res.send(responseObject);
-     });
- };
+
+//         }
+//         logger.info("login Successful");
+//         responseObject = dto.userApiSuccess;
+//         responseObject.message = data;
+//         console.log("login"+responseObject);
+//         res.send(responseObject);
+//     });
+// };
+exports.loginUser = (req, res) => {
+    let userDetails = req.body
+    loginNewUser(userDetails).then((data) => {
+        logger.info("login Successful");
+        responseObject = dto.userApiSuccess;
+        responseObject.message = data;
+        console.log("login"+responseObject);
+        res.send(responseObject);
+    }).catch((err) => {
+        console.log(err);
+        logger.error(err);
+            responseObject = dto.userApiFailure;
+            responseObject.message = err;
+          
+            return res.send(responseObject);
+    })
+}
  
  /**
   * @description handles response when user forgets password

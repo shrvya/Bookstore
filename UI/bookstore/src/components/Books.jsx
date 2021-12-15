@@ -15,7 +15,8 @@ import {
     Menu,
     MenuItem,
 } from "@mui/material";
-
+import {addcart }from '../service/cartapi'
+import {addtoCart} from '../action/getbooks'
 import { color } from '@mui/system';
 import Pagination from "react-js-pagination";
 import { setCurrentPage} from '../action/getbooks';
@@ -28,52 +29,43 @@ const Books = ({ value }) => {
     const indexOfLastBook = currentPage * booksPerPage;
     const indexOfFirstBook = indexOfLastBook - booksPerPage;
     const currentBooks = books.slice(indexOfFirstBook, indexOfLastBook);
-console.log(currentBooks)
+
     const paginate = pageNumber => dispatch(setCurrentPage(pageNumber))
     
     const [data, setData] = useState([]);
-    const [sortType, setSortType] = useState('count');
-    function sortAsc(arr, field) {
-        return arr.sort(function (a, b) {
-            if (a[field] > b[field]) {
-                return 1;
-            }
-            if (b[field] > a[field]) {
-                return -1;
-            }
-            return 0;
-        })
-    }
-  let sorted=[];
-    useEffect(() => {
-        const sortArray = type => {
-            const types = {
-                asc: 'books.price',
-                count: ' books.title',
-                desc:"books.price"
+    const [sort, setSort] = React.useState(null);
+    
+    const handleSort = (event) => {
+        setSort(event.target.value);
+        if (event.target.value =="asc") {
+          books.sort((a, b) => a.price - b.price);
+        } else if (event.target.value =="desc") {
+          books.sort((a, b) => b.price - a.price);
+        }
+      };
 
-            };
-            const sortProperty = types[type];
-            
-            if(sortProperty=='books.price')
-            {
-                
-                sorted=sortAsc(data,sortProperty)
-                console.log( sortAsc(data,sortProperty));
-                
-            }
-           sorted = [...books].sort((a, b) => b[sortProperty] - a[sortProperty]);
-            console.log(sorted);
-            console.log("sorted");
-            setData(sorted);
-        };
-
-        sortArray(sortType);
-    }, [sortType]);
+ 
 const [anchorEl, setAnchorEl] = useState(null);
 const handleClose = () => {
     setAnchorEl(null);
   };
+ const  handleaddcart=(item)=>{
+    let data = {
+        bookId: item._id,
+        price: item.price,
+        title: item.title,
+        image: item.image,
+        author: item.author,
+      };
+     addcart(data)
+      .then((res) => {
+         dispatch(addtoCart(data));
+             console.log(res);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  }
 
     return (
         <Box className="container" sx={{ p: 15 }}>
@@ -103,9 +95,10 @@ const handleClose = () => {
                     marginTop: "-35%",
                     marginLeft: "955px",
                 }}
-               
+                onChange={ handleSort}
+                
                 >
-                    <option value=" count" >Sort by relevance</option>
+                    <option value=" count"  >Sort by relevance</option>
                     <option value="asc"  >Sort price:low to high</option>
                     <option value="desc" >Sort price:high to low</option>
                 </select>
@@ -152,19 +145,21 @@ const handleClose = () => {
                                         fullWidth="true"
                                         variant="contained"
                                         style={{
-
-
-                                            backgroundColor: " #A03037",
+                                           backgroundColor: " #A03037",
                                             width: "205px",
                                             marginBottom: "10px",
                                             height: "33px",
                                             color: "#ffff",
                                             borderRadius: "2px",
                                             fontSize: "10px"
-                                            // padding: "3px 4px 3px 4px"
-
+                                           
 
                                         }}
+                                        onClick={() => 
+                                            {
+                                                handleaddcart(item)
+                                            }
+                                        }
                                     >
                                         Add to Bag</Button>
                                     <Button

@@ -25,24 +25,42 @@
    * @param {*} callback
    * @returns callback 
    */
-  const loginNewUser = (body, callback) => {
-    loginUser(body, (err, data) => {
-      if (err) {
-        return callback(err, null);
-      } else {
-        if (bcrypt.compareSync(body.password, data.password)) {
-          var token = jwtHelper.generateToken(data._id);
-          console.log(token);
-          var result = data + "Token:" + token;
-          return callback(null, token);
-        }
-        else {
-          return callback("password mismatch");
+  //  const loginNewUser = (body, callback) => {
+  //   loginUser(body, (err, data) => {
+  //     if (err) {
+  //       return callback(err, null);
+  //     } else {
+  //       if (bcrypt.compareSync(body.password, data.password)) {
+  //         var token = jwtHelper.generateToken(data._id);
+  //         console.log(token);
+  //         var result = data + "Token:" + token;
+  //         return callback(null, token);
+  //       }
+  //       else {
+  //         return callback("password mismatch");
   
+  //       }
+  //     }
+  //   });
+  // };
+  const loginNewUser = (userDetails) => {
+    return loginUser(userDetails).then((data) => {
+        if(bcrypt.compareSync(userDetails.password,data.password)){
+          var token=jwtHelper.generateToken(data);
+        
+            console.log(token);
+          return token
         }
-      }
-    });
-  };
+        else
+        {
+          throw new Error("Password is incorrect")
+        }
+    }).catch((error) => {
+      console.log(error)
+      console.log("servo");
+        throw error
+    })
+}
   /**
    * @description handles request for forgot password
    * @param email
