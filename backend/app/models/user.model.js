@@ -2,7 +2,7 @@
  * @description:to get the data from the service and processes it
  * @file:user.model.js
  * @author:Shrivya Shetty
- * @since:01-12-2021
+ * @since:12-12-2021
  */
  const mongoose = require('mongoose');
  const bcrypt = require('bcrypt');
@@ -118,12 +118,7 @@
   * @param {*} callback 
   * @returns 
   */
-  // const loginUser = (body, callback) => {
-  //   return User.findOne({ email: body.email }, (err, data) => {
-  //     console.log(data);
-  //     return err ? callback(err, null) : callback(null, data);
-  //   });
-  // };
+  
   loginUser = (userDetails) => {
     return User.findOne({email: userDetails.email}).then((data) => {
         if (data) {

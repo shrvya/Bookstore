@@ -6,6 +6,8 @@ const dbConnect = require('./config/database.user')
 const routeUser = require('./app/routes/user.route');
 const routeBook=require('./app/routes/book.route');
 const routeCart=require('./app/routes/cart.route');
+const routeOrder=require('./app/routes/order.route');
+const routeCustomer=require('./app/routes/customer.route')
 const logger = require('./utils/logger');
 require('dotenv').config();
 
@@ -25,8 +27,8 @@ app.use(express.json())
 app.use('/users',cors(corsOptions), routeUser)
 app.use('/books',cors(corsOptions), routeBook)
 app.use('/carts',cors(corsOptions),routeCart)
-
-
+app.use('/customer',cors(corsOptions),routeCustomer)
+app.use('/orders',cors(corsOptions),routeOrder)
 // define a simple route
 app.get('/', (req, res) => {
     res.json({"message": "Welcome to EasyNotes application. Take notes quickly. Organize and keep track of all your notes."});

@@ -36,3 +36,11 @@ export const setCurrentPage=(payload)=>{
     payload
     
   }}
+  export const deletecart=(bookId)=>{
+    return{
+    type: "DELETE_CART",
+    payload:bookId,
+    
+  }}
+  
+ 

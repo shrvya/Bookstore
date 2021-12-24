@@ -38,9 +38,7 @@
     width: 448px !important;
      height: 400px !important;
 }
-/* .reset-title-div{
-    border: solid blue;
-} */
+
 .reset-heading{
     width: 7em;
    color: #202124;
@@ -84,9 +82,7 @@ margin-top: 1ch;
     margin-right: 15px;
    
   }
-  /* .outputlabel-reset-confirm{
-      border: solid blue;
-  } */
+ 
 @media only screen and (max-width: 900px) {
    
       .reset-button{

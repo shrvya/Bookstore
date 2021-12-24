@@ -19,26 +19,7 @@
   * @param {object} req 
   * @param {object} res 
   */
-//   exports.loginUser = (req, res) => {
-//     let body = req.body;
-//     loginNewUser(body, (err, data) => {
-//         if (err) {
-//             console.log(data);
-//             logger.error(err);
-//             responseObject = dto.userApiFailure;
-//             responseObject.message = err;
-          
-//             return res.send(responseObject);
-           
 
-//         }
-//         logger.info("login Successful");
-//         responseObject = dto.userApiSuccess;
-//         responseObject.message = data;
-//         console.log("login"+responseObject);
-//         res.send(responseObject);
-//     });
-// };
 exports.loginUser = (req, res) => {
     let userDetails = req.body
     loginNewUser(userDetails).then((data) => {

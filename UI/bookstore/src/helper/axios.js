@@ -34,6 +34,7 @@ export const getBooks = (url) => {
             }
         }))}
         export const addDataCart = (url, data, token) => {
+           
             return(axios({
                 method: "post",
                 url: url,
@@ -48,6 +49,16 @@ export const getBooks = (url) => {
                 method: "put",
                 url: url,
                 data: data,
+                headers: {
+                    Authorization: `bearer ${token}`
+                }
+            }))
+        }
+        export const deleteCart = (url, token) => {
+            return(axios({
+                method: "delete",
+                url: url,
+               
                 headers: {
                     Authorization: `bearer ${token}`
                 }

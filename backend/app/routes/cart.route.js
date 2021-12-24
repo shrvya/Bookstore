@@ -16,5 +16,7 @@ const express = require('express')
     router.post("/",cors(corsOptions),tokenVerification, cart.create);
     router.put("/:cartId",tokenVerification, cart.update);
     router.delete("/:cartId",tokenVerification, cart.delete);
+    
+    router.delete("/",tokenVerification, cart.deleteItems);
     module.exports = router
   

@@ -4,7 +4,7 @@ const crypto = require('crypto');
 exports.generateToken = (data) => {
   return jwt.sign(
     {
-      // _id: _id,
+      
       email:data.email, 
    userId: data._id,
     },

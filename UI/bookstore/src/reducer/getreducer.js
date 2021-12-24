@@ -23,10 +23,7 @@ export default function DisplayBooks(state = initialState, action) {
                 currentPage: action.payload
             }
              case "ADD_CART":
-            return {
-                ...state,
-                cart: action.payload
-            }
+                return { ...state, cart: [...state.cart, action.payload] };
             case  "GET_CART":
                 return {
                     ...state,
@@ -38,6 +35,12 @@ export default function DisplayBooks(state = initialState, action) {
             newCart[action.payload.index] =action.payload.data;
             return { ...state, cart: newCart };
       
+            case  "DELETE_CART":
+                
+                let deleteItem = [...state.cart];
+                console.log( action.payload);
+      deleteItem = deleteItem.filter((item) => item._id !== action.payload);
+      return { ...state, cart: deleteItem };
       default : return state
 
   

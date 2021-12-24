@@ -15,7 +15,7 @@ class nodeMailer {
       from: 'shrifundonotes@gmail.com',
       to: email,
       subject: "Sending Email using Node.js",
-      // html: `<a>http://localhost:4000/users/reset/${token}</a>`,
+     
       html: `<a href='http://localhost:3000/users/reset/${token}'>click here</a>`,
       text: "password reset",
     };

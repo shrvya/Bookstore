@@ -49,8 +49,7 @@
     
     font-size: 1.7em;
    margin-top: 20px; 
- /* padding:4px 6px 6px 30px;
-  */
+ 
 padding-bottom: 12px;
   padding-left: 35px;
     align-self: center;
@@ -98,7 +97,8 @@ padding-bottom: 12px;
   }
   
   .outputlabel{
-      
+     
+
       height: 2.7em;
   }
   .outputlabel-login{
@@ -175,16 +175,21 @@ padding-bottom: 12px;
     .lastname{
       width: 25ch;
     }
-    
+    .phone{
+     margin-bottom: 25%;
+      border-color:solid brown;
+    }
     
     .passwordholder-box{
       width: 500px !important;
     }
-  .next-button{
+  .div-next-button{
     display: flex;
-    width: 500px;
+    width: 100px !important;
     float: right;
-    padding-bottom:150px !important;
+    /* padding-bottom:150px !important; */
+     padding-left:415px !important; 
+    border-color: solid;
     align-content: space-around;
     flex-wrap: wrap;
     flex-direction:row ;
@@ -219,6 +224,10 @@ padding-bottom: 12px;
      height:12em;
      padding-right: 2em;
   }
+   .register-username{
+width:80%
+
+  }
   
   @media only screen and (max-width: 900px) {
     /* For tablets: */
@@ -226,7 +235,7 @@ padding-bottom: 12px;
       width: 50.3%;
     }
     .username-box{
-      width: 70%;
+      width: 50%;
      
     }
     .passwordholder-box-login{
@@ -264,11 +273,12 @@ padding-bottom: 12px;
       width:50% !important;
       position: relative;
     }
-    .password{
-      width:15% !important;
+    .register-password{
+      width:40% !important;
       position: relative;
+      border-color: solid blue;
     }
-    .next-button{
+    .div-next-button{
       position: absolute;
       
     }
@@ -288,6 +298,14 @@ padding-bottom: 12px;
       margin-right:25px !important;
      
     }
+    .register-username{
+      width:95% !important;
+
+    }
+    .phoneNumber{
+      height: 75%;
+    }
+    
   }
   
   @media only screen and (min-width: 900px) {

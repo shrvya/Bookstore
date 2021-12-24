@@ -54,12 +54,14 @@
           margin-left: 5ch !important; 
       }
       .logins-username-box{
-          width:300px;
+          width:350px !important;
           margin-left: 5ch; 
+          border-color: solid green;
       }
       .logins-username{
-          width:300px !important;
+          width:300px !important ;
           align-content: center;
+          
       }
       .inputlabel{
         width:280px !important;
@@ -142,5 +144,11 @@
         margin-top: 35px;
        
       }
-      
+     
+      .logins-username{
+        width:30% !important ;
+        align-content: center;
+        
+    }
+     
   }

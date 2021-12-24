@@ -1,7 +1,18 @@
 
+/**
+ * @description:token verification
+ * @file:cart.middleware.js
+ * @author:Shrivya Shetty
+ * @since:12-12-2021
+ */
 const jwttoken = require("../utility/auth");
 
-
+/**
+ * @description verifies the generated token
+ * @param {*} req 
+ * @param {*} res 
+ * @param {*} next 
+ */
 const tokenVerification  = (req, res, next) => {
   
     const authHeader = req.headers.authorization;
@@ -13,8 +24,8 @@ const tokenVerification  = (req, res, next) => {
               if (err) {
                   return res.send(err);
               }
-              req.body.userId = user._id;
-              console.log(user._id);
+              req.body.userId = user.userId;
+              console.log(user.userId);
               next();
           });
       } else {

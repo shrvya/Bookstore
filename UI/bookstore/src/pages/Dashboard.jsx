@@ -2,31 +2,30 @@
 import Appbar from "../components/Appbar";
 import React, {  useEffect } from "react";
 import {booksRetrieve} from '../service/noteretrive'
-import {getBooks} from '../action/getbooks'
+import {getBooks, getcart} from '../action/getbooks'
 import Books from "../components/Books"
 import { useDispatch } from "react-redux";
+import { cartRetrieve } from "../service/cartapi";
 
 export default function Dashboard() {
-    // const dispatch = useDispatch()
-    // useEffect(() => {
-    //     fetchitem();
-    // }, []);
-    // const fetchitem = () => {
-    //     books().then((res) => {       
-           
-    //         dispatch(getBooks(res));
-    //     })
-    //         .catch((err) => {
-    //             console.log(err);
-    //         });
-    // };
+  
     const dispatch = useDispatch();
-    useEffect(() => { // eslint-disable-next-line
-        fetchitem(); // eslint-disable-next-line
+    useEffect(() => { 
+        fetchcart();
+        fetchitem(); 
+
     }, []);
     const fetchitem = () => {
         booksRetrieve().then((res) => {
             dispatch(getBooks(res.data));
+        }).catch((err) => {
+            console.log(err); 
+        });
+    };
+    const fetchcart = () => {
+        cartRetrieve().then((res) => {
+           console.log(res.data)
+            dispatch(getcart(res.data));
         }).catch((err) => {
             console.log(err); 
         });

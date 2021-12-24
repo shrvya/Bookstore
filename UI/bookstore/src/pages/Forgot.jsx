@@ -25,7 +25,7 @@ export const Forgot = () => {
   const [username, setusername] = useState("");
 
   const [userError, setuserError] = useState(false);
-//   const [passwordError, setPasswordError] = useState(false);
+
   const data = { email: username }
   const handleChange = (prop) => (event) => {
     setValues({ ...values, [prop]: event.target.value });
@@ -37,13 +37,10 @@ export const Forgot = () => {
     e.preventDefault();
 
     setuserError(false);
-    // setPasswordError(false);
-    // setPasswordConfirmError(false);
+    
 
     if (!validEmail.test(username)) setuserError(true);
-    // if (!validPassword.test(password)) setPasswordError(true);
-
-    // loginusers(data)
+    
     forgotusers(data)
    
   };
@@ -79,18 +76,13 @@ export const Forgot = () => {
                   }
                   // fullWidth
                   onChange={(e) => setusername(e.target.value)}
-                // InputProps={{
-                //   endAdornment: (
-                //     <InputAdornment position="end">@gmail.com</InputAdornment>
-                //   ),
-                // }}
-
+               
                 />
               </Box>            
 
               <div className="link-createaccount">
                   <p className="forgot-para">
-                  <Link to="/Registration">create account</Link>
+                  <Link to="/">create account</Link>
                   </p>
                   <div className="forgots-button">
                 <Button onClick={handleSubmit} variant="contained">Submit</Button>
@@ -100,9 +92,7 @@ export const Forgot = () => {
             </div>
 
           
-          {/* <div className="fundo-image-div">
-            <img className="fundo-image" src={image} style={{ verticalAlign: 'middle' }} />
-          </div> */}
+         
         </div>
      
     </main>

@@ -19,10 +19,7 @@ import { useSelector } from "react-redux";
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
   borderRadius: theme.shape.borderRadius,
-  // backgroundColor: alpha(theme.palette.common.white, 0.15),
-  // '&:hover': {
-  //   backgroundColor: alpha(theme.palette.common.white, 0.25),
-  // },
+  
   backgroundColor: "whitesmoke",
   marginRight: theme.spacing(2),
   marginLeft: 0,
@@ -87,12 +84,13 @@ useEffect(() => {
       <AppBar position="static" style={{ background: " #A03037" }}>
         <Toolbar>
           <IconButton
+          id="book"
             size="large"
             edge="start"
             color="inherit"
             aria-label="open drawer"
             sx={{ mr: 2 }}
-            style={{ marginLeft: "7%" }}
+            style={{ marginLeft: "7%" ,paddingRight:"15px"}}
             component={Link} to="/Dashboard"
           >
             <ImportContactsIcon />
@@ -128,7 +126,7 @@ useEffect(() => {
            
             <IconButton
               size="large"
-              
+              id="cart"
               style={{ color: "white",marginRight:"1em"}}
               component={Link} to="/CartPage"
             >

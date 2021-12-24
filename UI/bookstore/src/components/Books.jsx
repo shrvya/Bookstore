@@ -29,13 +29,15 @@ const Books = ({ value }) => {
     const indexOfLastBook = currentPage * booksPerPage;
     const indexOfFirstBook = indexOfLastBook - booksPerPage;
     const currentBooks = books.slice(indexOfFirstBook, indexOfLastBook);
-
+    const cartbooks = useSelector((state) => state.allBooks.cart);
+    console.log(cartbooks);
     const paginate = pageNumber => dispatch(setCurrentPage(pageNumber))
     
     const [data, setData] = useState([]);
     const [sort, setSort] = React.useState(null);
     
     const handleSort = (event) => {
+        console.log(cartbooks);
         setSort(event.target.value);
         if (event.target.value =="asc") {
           books.sort((a, b) => a.price - b.price);
@@ -46,6 +48,8 @@ const Books = ({ value }) => {
 
  
 const [anchorEl, setAnchorEl] = useState(null);
+const [bookIndex, setBookIndex] = useState(0);
+
 const handleClose = () => {
     setAnchorEl(null);
   };
@@ -57,20 +61,22 @@ const handleClose = () => {
         image: item.image,
         author: item.author,
       };
+      console.log(data);
+     
      addcart(data)
       .then((res) => {
+        console.log(res);
          dispatch(addtoCart(data));
-             console.log(res);
+             
       })
       .catch((e) => {
         console.log(e);
       });
+     
+    
   }
-
     return (
         <Box className="container" sx={{ p: 15 }}>
-
-
             <Typography id="book-count"
                 style={{
                     marginTop: "-10%",
@@ -138,10 +144,27 @@ const handleClose = () => {
                                         RS.{item.price}
                                     </span>
                                 </CardContent>
-                                <CardActions
+                {/* //change */}
+                {cartbooks.some((obj) => obj.bookId === item._id) ? (
+              <Button
+                variant="contained"
+                type="submit"
+                size="small"
+                style={{
+                  background: "#3371B5",
+                  color: "white",
+                  marginLeft: "25px",
+                  width: "181px",
+                }}
+              >
+                Added to bag
+              </Button>
+            ) : (
+                      <CardActions
                                     style={{ display: "flex", justifyContent: "space-around" }}
                                 >
                                     <Button
+                                    id="addtobag"
                                         fullWidth="true"
                                         variant="contained"
                                         style={{
@@ -157,11 +180,13 @@ const handleClose = () => {
                                         }}
                                         onClick={() => 
                                             {
+                                              
                                                 handleaddcart(item)
+                                                
                                             }
                                         }
                                     >
-                                        Add to Bag</Button>
+                                    Add to Bag </Button>
                                     <Button
                                         variant="outlined"
                                         fullWidth="true"
@@ -183,6 +208,7 @@ const handleClose = () => {
                                         Wishlist
                                     </Button>
                                 </CardActions>
+            )}
                             </Card>
                         </Grid>
                     );
@@ -204,86 +230,5 @@ const handleClose = () => {
 
     )
 
-
-
-
-
-
-
-
-
 }
 export default Books;
-
-// import React, { useState, useEffect } from 'react';
-
-
-// const bands = [
-//   {
-//     id: 1,
-//     name: 'Nightwish',
-//     albums: 9,
-//     members: 6,
-//     formed_in: 1996,
-//   },
-//   {
-//     id: 2,
-//     name: 'Metallica',
-//     albums: 10,
-//     members: 4,
-//     formed_in: 1981,
-//   },
-//   {
-//     id: 3,
-//     name: 'Nirvana',
-//     albums: 3,
-//     members: 3,
-//     formed_in: 1987,
-//   },
-// ];
-
-// function App() {
-//   const [data, setData] = useState([]);
-//   const [sortType, setSortType] = useState('albums');
-
-//   useEffect(() => {
-//     const sortArray = type => {
-//       const types = {
-//         albums: 'albums',
-//         members: 'members',
-//         formed: 'formed_in',
-//       };
-//       const sortProperty = types[type];
-//       console.log("sortProperty");
-//       console.log(sortProperty);
-//       const sorted = [...bands].sort((a, b) => b[sortProperty] - a[sortProperty]);
-//       console.log("sorted");
-//       console.log(sorted);
-//       setData(sorted);
-     
-//     };
-
-//     sortArray(sortType);
-//   }, [sortType]); 
-
-//   return (
-//     <div className="App">
-//       <select onChange={(e) => setSortType(e.target.value)}> 
-//         <option value="albums">Albums</option>
-//         <option value="members">Members</option>
-//         <option value="formed">Formed in</option>
-//       </select>
-
-//       {data.map(band => (
-//         <div key={band.id} style={{ margin: '30px' }}>
-//           <div>{`Band: ${band.name}`}</div>
-//           <div>{`Albums: ${band.albums}`}</div>
-//           <div>{`Members: ${band.members}`}</div>
-//           <div>{`Year of founding: ${band.formed_in}`}</div>
-//         </div>
-//       ))}
-//     </div>
-//   );
-// }
-
-// export default App;

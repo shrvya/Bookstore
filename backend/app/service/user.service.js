@@ -20,29 +20,12 @@
   const jwtHelper = require("../utility/auth");
   const { createEmail } = require("../utility/nodemailer");
   /**
-   * @description handles request and response for creating user
+   * @description handles request and response for logging in user
    * @param {*} body 
    * @param {*} callback
    * @returns callback 
    */
-  //  const loginNewUser = (body, callback) => {
-  //   loginUser(body, (err, data) => {
-  //     if (err) {
-  //       return callback(err, null);
-  //     } else {
-  //       if (bcrypt.compareSync(body.password, data.password)) {
-  //         var token = jwtHelper.generateToken(data._id);
-  //         console.log(token);
-  //         var result = data + "Token:" + token;
-  //         return callback(null, token);
-  //       }
-  //       else {
-  //         return callback("password mismatch");
   
-  //       }
-  //     }
-  //   });
-  // };
   const loginNewUser = (userDetails) => {
     return loginUser(userDetails).then((data) => {
         if(bcrypt.compareSync(userDetails.password,data.password)){

@@ -30,14 +30,14 @@ export const Registration = () => {
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const [PhoneNumber, setPhoneNumber] = useState("");
   const [firstNameError, setFirstNameError] = useState(false);
   const [lastNameError, setLastNameError] = useState(false);
   const [emailError, setEmailError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
   const [confirmPasswordError, setPasswordConfirmError] = useState(false);
-  // ,phoneNumber:phoneNumber
-  const data = { firstname: firstName, lastname: lastName,  email: email, password: password }
+  
+  const data = { firstname: firstName, lastname: lastName,  email: email, password: password,phoneNumber:PhoneNumber }
   const handleSubmit = (e) => {
     e.preventDefault();
     setFirstNameError(false);
@@ -49,9 +49,7 @@ export const Registration = () => {
     if (!validlastname.test(lastName)) setLastNameError(true);
     if (!validEmail.test(email)) setEmailError(true);
     if (!validPassword.test(password)) setPasswordError(true);
-    if (password !== confirmPassword) {
-      setPasswordConfirmError(true);
-    }
+    setPhoneNumber(true)
     users(data)
 
     
@@ -93,6 +91,7 @@ export const Registration = () => {
                 autoComplete="off"
               >
                 <TextField
+                name="firstname"
                   label="first name"
                   id="firstname"
                   size="small"
@@ -101,6 +100,7 @@ export const Registration = () => {
                   onChange={(e) => setFirstName(e.target.value)}
                 />
                 <TextField
+                 name="lastname"
                   label="last name"
                   id="lastname"
                   size="small"
@@ -108,11 +108,12 @@ export const Registration = () => {
                   helperText={lastNameError ? "Invalid last name" : ""}
                   onChange={(e) => setLastName(e.target.value)}
                 />
-                <Box className="register-username-box" component="form" sx={{ '& > :not(style)': { m: 1, width: '50ch' }, }}
+               <Box className="register-username-box" component="form" sx={{ '& > :not(style)': { m: 1, width: '50ch' }, }}
                   noValidate
                   autoComplete="off"
-                >
+                > 
                   <TextField
+                   name="username"
                     className="register-username"
 
                     label="username"
@@ -134,15 +135,16 @@ export const Registration = () => {
                     }}
 
                   />
-                </Box>
+                </Box> 
 
                 <Box className="passwordholder-box" component="form" sx={{ '& > :not(style)': { m: 1, width: '20ch' }, }}
                   noValidate
                   autoComplete="off"
                 >
-                  <FormControl className="password" sx={{ m: 1, width: '25ch', height: '10ch' }} variant="outlined">
+                  <FormControl className="register-password" sx={{ m: 1, width: '25ch', height: '5ch' }} variant="outlined">
                     <InputLabel className="inputlabel" htmlFor="outlined-adornment-password">Password</InputLabel>
                     <OutlinedInput className="outputlabel"
+                     name="password"
                       id="outlined-adornment-password"
                       type={values.showPassword ? 'text' : 'password'}
                       
@@ -172,43 +174,28 @@ export const Registration = () => {
                     
                     />
                   </FormControl>
-                  <FormControl className="password" sx={{ m: 1, width: '20ch', height: '10ch' }} variant="outlined">
-                    <InputLabel className="inputlabel" htmlFor="outlined-adornment-password">Confirm</InputLabel>
-                    <OutlinedInput className="outputlabel"
-                      id="outlined-adornment-confirm-password"
-                      type={values.showconfirmPassword ? 'text' : 'confirmpassword'}
-                      
-                      endAdornment={
-                        <InputAdornment position="end">
-                          <IconButton
-                            aria-label="toggle password visibility"
-                            onClick={handleClickShowConfirmPassword}
-                            onMouseDown={handleMouseDownPassword}
-                            edge="end"
-                          >
-                            {values.showconfirmPassword ? <VisibilityOff /> : <Visibility />}
-                          </IconButton>
-                        </InputAdornment>
-                      }
-                      type={values.showPassword ? "text" : "password"}
-                      onChange={(e) => setConfirmPassword(e.target.value)}
-                      error={confirmPasswordError}
-                      helperText={confirmPasswordError ? "Password doesnt match" : ""}
-                      label="Confirm"
-                    />
-                  </FormControl>
-
-
-
+                 
                 </Box>
-                {/* <FormControlLabel control={<Checkbox defaultChecked />} label="Show password" /> */}
+                <div className="phone">
+                <TextField
+                 name="phoneNumber"
+                  label="phone Number"
+                  id="phoneNumber"
+                  size="small"
+                  className="phoneNumber"
+                 
+                  onChange={(e) =>setPhoneNumber(e.target.value)}
+                />
+                </div>
+                
+
                 <div className="link-signin">
                   <Link to="/Login">Login</Link>
                 </div>
-                <div className="next-button">
+                <div className="div-next-button">
 
 
-                  <Button id=" next-button"onClick={handleSubmit} variant="contained">Next</Button>
+                  <Button id="next-button"onClick={handleSubmit} variant="contained">Next</Button>
                 </div>
 
 

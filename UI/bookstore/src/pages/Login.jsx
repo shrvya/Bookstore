@@ -72,11 +72,12 @@ export const Login = () => {
           
            </h6>
             <div className="form-div">
-              <Box className="logins-username-box" component="form" sx={{ '& > :not(style)': { m: 1, width: '50ch' }, }}
+              <Box className="logins-username-box" component="form" sx={{ '& > :not(style)': { m: 1, width: '28ch' }, }}
                 noValidate
                 autoComplete="off"
               >
                 <TextField
+                name="email"
                   className="logins-username"
                   label="Email"
                   id="Email"
@@ -101,6 +102,7 @@ export const Login = () => {
                 <FormControl sx={{ m: 1, width: '20ch', height: '10ch' }} variant="outlined">
                   <InputLabel className="inputlabel" htmlFor="outlined-adornment-password">Password</InputLabel>
                   <OutlinedInput className="outputlabel-login"
+                  name="password"
                     id="outlined-adornment-password"
                     type={values.showPassword ? 'text' : 'password'}
                    
@@ -135,8 +137,8 @@ export const Login = () => {
               <div className="link-signin">
                   <Link to="/forgot">forgot password</Link>
                 </div>
-              <div className="login-button">
-                <Button onClick={handleSubmit} variant="contained">Login</Button>
+              <div className="login-button" >
+                <Button onClick={handleSubmit} variant="contained" id="submit">Login</Button>
               </div>
             </div>
 
